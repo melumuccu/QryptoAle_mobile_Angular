@@ -1,5 +1,7 @@
 {
   "name": "QryptoAle_mobile_Angular",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
