@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false, // ESLintではFixしない(PrettierにFixは任せる)
+    "source.organizeImports": true // importの自動ソート
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "stylelint.autoFixOnSave": true,
+  "editor.formatOnSave": true,
+  "extensions.ignoreRecommendations": false
+}
