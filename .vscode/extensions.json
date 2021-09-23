@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "mkaufman.htmlhint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "hex-ci.stylelint-plus",
+    "coenraads.bracket-pair-colorizer-2",
+    "christian-kohler.path-intellisense",
+    "nemesv.copy-file-name",
+    "mhutchie.git-graph",
+    "oderwat.indent-rainbow",
+    "ms-ceintl.vscode-language-pack-ja",
+    "wmaurer.change-case"
+  ]
+}
