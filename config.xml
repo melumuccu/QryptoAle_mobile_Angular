@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget version="0.0.1" id="" android-packageName="jp.gr.java_conf.qrypto_ale_ng" ios-CFBundleIdentifier="jp.gr.java-conf.qrypto-ale-ng" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="jp.gr.java_conf.qrypto_ale_ng" id="" ios-CFBundleIdentifier="jp.gr.java-conf.qrypto-ale-ng" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>QryptoAle_Ng</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
