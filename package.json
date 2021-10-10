@@ -10,6 +10,7 @@
     "test": "npx jest",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "env": "git checkout develop && git config --local commit.template config/.commit-message-template.txt && npm install && npx ionic cordova platform add ios@6.2.0 && npx ionic cordova platform add android@9.1.0 && afplay /System/Library/Sounds/Glass.aiff",
     "build:ios": "npx ionic cordova build ios --debug --buildConfig",
     "build:and": "npx ionic cordova build android --debug",
     "device:ios": "npx ionic cordova run ios --list",
