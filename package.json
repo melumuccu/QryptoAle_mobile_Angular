@@ -9,7 +9,15 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ios": "npx ionic cordova build ios --debug --buildConfig",
+    "build:and": "npx ionic cordova build android --debug",
+    "device:ios": "npx ionic cordova run ios --list",
+    "device:and": "npx ionic cordova run android --list",
+    "run:emu:ios": "npx ionic cordova run ios  --debug --livereload --emulator --buildConfig",
+    "run:emu:and": "npx ionic cordova run android  --debug --livereload --emulator",
+    "run:dev:ios": "npx ionic cordova run ios  --debug --livereload --device --no-build --no-native-run --buildConfig",
+    "run:dev:and": "npx ionic cordova run android  --debug --livereload --device --no-build --no-native-run"
   },
   "private": true,
   "dependencies": {
