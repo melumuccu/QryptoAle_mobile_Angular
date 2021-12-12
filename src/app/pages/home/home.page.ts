@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiService } from '../../shared/services/api.service';
 
 type Balance = {
   crypto: string;
@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   balances: Balance[];
 
   /** コンストラクタ */
-  constructor(private httpClient: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   /** 初期化 */
   ngOnInit() {
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
    */
   fetchAllBalances(): Observable<Balance[]> {
     const ob = new Observable<Balance[]>(observable => {
-      this.httpClient.get<Balance[]>('http://localhost:3000/balances').subscribe(
+      this.api.get<Balance[]>('/balances').subscribe(
         response => {
           observable.next(response);
         },
