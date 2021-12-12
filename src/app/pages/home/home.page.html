@@ -6,6 +6,6 @@
   </ion-header>
 
   <div *ngFor="let balance of balances">
-    {{ balance.crypto }}: 【available: {{ balance.available }}】【onOrder: {{ balance.onOrder }}】
+    {{ balance.asset }}: 【free: {{ balance.free }}】【locked: {{ balance.locked }}】
   </div>
 </ion-content>

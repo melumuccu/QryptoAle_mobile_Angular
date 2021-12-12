@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetBalance } from 'binance-api-node';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../shared/services/api.service';
 
-type Balance = {
-  crypto: string;
-  available: string;
-  onOrder: string;
-};
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  balances: Balance[];
+  balances: AssetBalance[];
 
   /** コンストラクタ */
   constructor(private api: ApiService) {}
@@ -36,9 +32,9 @@ export class HomePage implements OnInit {
    *
    * @returns response
    */
-  fetchAllBalances(): Observable<Balance[]> {
-    const ob = new Observable<Balance[]>(observable => {
-      this.api.get<Balance[]>('/balances').subscribe(
+  fetchAllBalances(): Observable<AssetBalance[]> {
+    const ob = new Observable<AssetBalance[]>(observable => {
+      this.api.get<AssetBalance[]>('/balances').subscribe(
         response => {
           observable.next(response);
         },
