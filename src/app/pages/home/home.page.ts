@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
 
   /** 初期化 */
   ngOnInit() {
-    this.fetchAllBalances().subscribe(
+    this.fetchAllBalances(0, true).subscribe(
       balances => {
         console.log('file: home.page.ts => line 25 => ngOnInit => balances', balances);
         this.balances = balances;
@@ -30,18 +30,22 @@ export class HomePage implements OnInit {
   /**
    * 全通貨の現在保有額を取得
    *
+   * @param minQuantity 最小数量
+   * @param includeLocked 注文中の数量を含むか
    * @returns response
    */
-  fetchAllBalances(): Observable<AssetBalance[]> {
+  fetchAllBalances(minQuantity: number, includeLocked: boolean): Observable<AssetBalance[]> {
     const ob = new Observable<AssetBalance[]>(observable => {
-      this.api.get<AssetBalance[]>('/balances').subscribe(
-        response => {
-          observable.next(response);
-        },
-        error => {
-          observable.error(error);
-        }
-      );
+      this.api
+        .get<AssetBalance[]>(`/balances?minQuantity=${minQuantity}&includeLocked=${includeLocked}`)
+        .subscribe(
+          response => {
+            observable.next(response);
+          },
+          error => {
+            observable.error(error);
+          }
+        );
     });
     return ob;
   }
