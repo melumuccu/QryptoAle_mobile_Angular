@@ -15,8 +15,8 @@
     "build:and": "npx ionic cordova build android --debug",
     "device:ios": "npx ionic cordova run ios --list",
     "device:and": "npx ionic cordova run android --list",
-    "run:emu:ios": "npx ionic cordova run ios  --debug --livereload --emulator --buildConfig",
-    "run:emu:and": "npx ionic cordova run android  --debug --livereload --emulator",
+    "run:emu:ios": "npx ionic cordova run ios  --debug --livereload --emulator --buildConfig --consolelogs",
+    "run:emu:and": "npx ionic cordova run android  --debug --livereload --emulator --consolelogs",
     "run:dev:ios": "npx ionic cordova run ios  --debug --livereload --device --no-build --no-native-run --buildConfig",
     "run:dev:and": "npx ionic cordova run android  --debug --livereload --device --no-build --no-native-run"
   },
