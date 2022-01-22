@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
 
   /** 初期化 */
   ngOnInit() {
-    this.fetchAllBalances(0, true).subscribe(
+    this.fetchAllBalances(1, true).subscribe(
       balances => {
         console.log('file: home.page.ts => line 25 => ngOnInit => balances', balances);
         this.balances = balances;

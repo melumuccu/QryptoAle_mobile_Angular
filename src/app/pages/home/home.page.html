@@ -4,8 +4,18 @@
       <ion-title size="large">home</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div *ngFor="let balance of balances">
-    {{ balance.asset }}: 【free: {{ balance.free }}】【locked: {{ balance.locked }}】
+  <div class="wrap">
+    <table class="aaa">
+      <tr>
+        <th>asset</th>
+        <th>free</th>
+        <th>locked</th>
+      </tr>
+      <tr *ngFor="let balance of balances">
+        <td>{{ balance.asset }}</td>
+        <td>{{ balance.free }}</td>
+        <td>{{ balance.locked }}</td>
+      </tr>
+    </table>
   </div>
 </ion-content>
