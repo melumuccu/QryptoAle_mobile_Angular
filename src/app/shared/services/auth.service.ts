@@ -54,6 +54,15 @@ export class AuthService {
   }
 
   /**
+   * ログインユーザ情報の取得
+   *
+   * @returns ユーザ情報
+   */
+  public getUserData(): Observable<any> {
+    return from(Auth.currentAuthenticatedUser());
+  }
+
+  /**
    * JWTを取得
    *
    * ・API GatewayにはCognito認証をかけている
