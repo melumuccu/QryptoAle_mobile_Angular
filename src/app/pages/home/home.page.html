@@ -32,7 +32,7 @@
       <ion-col size="2" class="data profitRatio">{{ ppr.profitRatio }}</ion-col>
     </ion-row>
   </ion-grid>
-  <div class="noContents" *ngIf="portfolioProfitRatios === null || portfolioProfitRatios === undefined || portfolioProfitRatios.length === 0">
+  <div class="noContents" *ngIf="!nowLoading && !hasContents()">
     <ion-icon name="information-circle-outline"></ion-icon>
     <span class="text">no contents.</span>
   </div>

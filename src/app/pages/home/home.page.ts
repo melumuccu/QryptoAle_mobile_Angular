@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { PortfolioProfitRatio } from 'src/app/shared/interface/binance';
 import { ApiService } from '../../shared/services/api.service';
@@ -10,19 +11,32 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class HomePage implements OnInit {
   portfolioProfitRatios: PortfolioProfitRatio[]; // GET[/portfolio/profit-ratio] の取得した値を格納する
+  nowLoading = false;
 
   /** コンストラクタ */
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private loadingCtrl: LoadingController) {}
 
   /** 初期化 */
-  ngOnInit() {
+  async ngOnInit() {
+    // 初回loading info
+    const loading = await this.loadingCtrl.create({
+      message: 'now Loading...',
+      spinner: 'circles',
+    });
+    loading.present();
+    this.nowLoading = true;
+
     this.fetchPortfolioProfitRatios().subscribe(
-      response => {
+      async response => {
         this.portfolioProfitRatios = response;
+        await loading.dismiss();
+        this.nowLoading = false;
       },
-      error => {
+      async error => {
         // TODO エラー表示する
         console.error(error);
+        await loading.dismiss();
+        this.nowLoading = false;
       }
     );
   }
@@ -42,6 +56,19 @@ export class HomePage implements OnInit {
         // TODO エラー表示する
         console.error(error);
       }
+    );
+  }
+
+  /**
+   * コンテンツを１つ以上持つかどうか
+   *
+   * @returns true: 1つ以上のコンテンツを持つ
+   */
+  hasContents(): boolean {
+    return (
+      this.portfolioProfitRatios !== null &&
+      this.portfolioProfitRatios !== undefined &&
+      this.portfolioProfitRatios.length > 0
     );
   }
 
