@@ -1,8 +1,9 @@
 // base color
 $black: #343434;
+$white: #ffffff;
 // var
-$table_line_header: 1px solid $black;
-$table_line_col: 1px solid $black;
+$table_line_header: 1px solid var(--ion-border-color);
+$table_line_col: 1px solid var(--ion-border-color);
 
 //================================
 ion-grid {
@@ -10,9 +11,11 @@ ion-grid {
 }
 .header {
   border-right: $table_line_header;
-  border-top: $table_line_header;
   border-bottom: $table_line_header;
-  padding: 2px 5px;
+  padding: 5px;
+  text-align: start;
+  background-color: var(--ion-color-secondary);
+  color: $white;
 }
 .header:last-child {
   border-right: unset;
@@ -21,7 +24,7 @@ ion-grid {
 .col {
   border-right: $table_line_col;
   border-left: $table_line_col;
-  padding: 2px 5px;
+  padding: 5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
