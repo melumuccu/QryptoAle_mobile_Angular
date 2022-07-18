@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -18,8 +18,13 @@ export class ApiService {
    */
   get<T>(endpoint: string): Observable<T> {
     console.log('API get endpoint: ', endpoint);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
     const ob = new Observable<T>(observable => {
-      this.httpClient.get<T>(environment.origin + endpoint).subscribe(
+      this.httpClient.get<T>(environment.origin + endpoint, httpOptions).subscribe(
         response => {
           console.log('API get response: ', response);
           observable.next(response);

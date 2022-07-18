@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AssetBalance } from 'binance-api-node';
 import { Observable } from 'rxjs';
+import { PortfolioProfitRatio } from 'src/app/shared/interface/binance';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -9,17 +9,24 @@ import { ApiService } from '../../shared/services/api.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  balances: AssetBalance[];
+  portfolioProfitRatios: PortfolioProfitRatio[]; // GET[/portfolio/profit-ratio] の取得した値を格納する
 
   /** コンストラクタ */
   constructor(private api: ApiService) {}
 
   /** 初期化 */
   ngOnInit() {
-    this.fetchAllBalances(1, true).subscribe(
-      balances => {
-        console.log('file: home.page.ts => line 25 => ngOnInit => balances', balances);
-        this.balances = balances;
+    this.fetchPortfolioProfitRatios();
+  }
+
+  /**
+   * 利益率を取得する
+   */
+  fetchPortfolioProfitRatios() {
+    this.callGetPortfolioProfitRatios().subscribe(
+      result => {
+        console.log('file: home.page.ts => line 21 => ngOnInit => result', result);
+        this.portfolioProfitRatios = result;
       },
       error => {
         console.error(error);
@@ -34,18 +41,16 @@ export class HomePage implements OnInit {
    * @param includeLocked 注文中の数量を含むか
    * @returns response
    */
-  fetchAllBalances(minQuantity: number, includeLocked: boolean): Observable<AssetBalance[]> {
-    const ob = new Observable<AssetBalance[]>(observable => {
-      this.api
-        .get<AssetBalance[]>(`/balances?minQuantity=${minQuantity}&includeLocked=${includeLocked}`)
-        .subscribe(
-          response => {
-            observable.next(response);
-          },
-          error => {
-            observable.error(error);
-          }
-        );
+  callGetPortfolioProfitRatios(): Observable<PortfolioProfitRatio[]> {
+    const ob = new Observable<PortfolioProfitRatio[]>(observable => {
+      this.api.get<PortfolioProfitRatio[]>(`/portfolio/profit-ratio`).subscribe(
+        response => {
+          observable.next(response);
+        },
+        error => {
+          observable.error(error);
+        }
+      );
     });
     return ob;
   }

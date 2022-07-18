@@ -1,21 +1,24 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div class="wrap">
-    <table class="aaa">
-      <tr>
-        <th>asset</th>
-        <th>free</th>
-        <th>locked</th>
-      </tr>
-      <tr *ngFor="let balance of balances">
-        <td>{{ balance.asset }}</td>
-        <td>{{ balance.free }}</td>
-        <td>{{ balance.locked }}</td>
-      </tr>
-    </table>
-  </div>
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">home</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-button (click)="this.fetchPortfolioProfitRatios()">更新</ion-button>
+<table>
+  <tr>
+    <th class="col header asset">通貨</th>
+    <th class="col header aveBuyPrice">平均購入価格</th>
+    <th class="col header nowSymbolPrice">現在価格</th>
+    <th class="col header profitRatio">利益率</th>
+  </tr>
+</table>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let ppr of portfolioProfitRatios">
+      <ion-col class="col asset">{{ ppr.balance.asset }}</ion-col>
+      <ion-col class="col aveBuyPrice">{{ ppr.aveBuyPrice }}</ion-col>
+      <ion-col class="col nowSymbolPrice">{{ ppr.nowSymbolPrice }}</ion-col>
+      <ion-col class="col profitRatio">{{ ppr.profitRatio }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
