@@ -49,3 +49,14 @@ ion-row:last-child {
 .header.nowSymbolPrice {
   width: calc(2/6 * 100%);
 }
+
+// 横向き対応
+@media (orientation: landscape) {
+  // ノッチ対応
+  .header:first-child,
+  .header:last-child,
+  .col:first-child,
+  .col:last-child {
+    text-align: center;
+  }
+}
