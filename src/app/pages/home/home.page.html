@@ -6,10 +6,10 @@
 
 <table>
   <tr>
-    <th class="header asset">通貨</th>
-    <th class="header aveBuyPrice">平均購入価格</th>
-    <th class="header nowSymbolPrice">現在価格</th>
-    <th class="header profitRatio">利益率</th>
+    <th class="tableHeader asset">通貨</th>
+    <th class="tableHeader aveBuyPrice">平均購入価格</th>
+    <th class="tableHeader nowSymbolPrice">現在価格</th>
+    <th class="tableHeader profitRatio">利益率</th>
   </tr>
 </table>
 <ion-content>
@@ -23,12 +23,13 @@
     >
     </ion-refresher-content>
   </ion-refresher>
+  <!-- table data -->
   <ion-grid>
-    <ion-row *ngFor="let ppr of portfolioProfitRatios">
-      <ion-col class="col asset" size="2">{{ ppr.balance.asset }}</ion-col>
-      <ion-col class="col aveBuyPrice" size="4">{{ ppr.aveBuyPrice }}</ion-col>
-      <ion-col class="col nowSymbolPrice" size="4">{{ ppr.nowSymbolPrice }}</ion-col>
-      <ion-col class="col profitRatio" size="2">{{ ppr.profitRatio }}</ion-col>
+    <ion-row class="dataList" *ngFor="let ppr of portfolioProfitRatios">
+      <ion-col size="2" class="data asset">{{ ppr.balance.asset }}</ion-col>
+      <ion-col size="4" class="data aveBuyPrice">{{ ppr.aveBuyPrice }}</ion-col>
+      <ion-col size="4" class="data nowSymbolPrice">{{ ppr.nowSymbolPrice }}</ion-col>
+      <ion-col size="2" class="data profitRatio">{{ ppr.profitRatio }}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
