@@ -6,19 +6,19 @@
 <ion-button (click)="this.fetchPortfolioProfitRatios()">更新</ion-button>
 <table>
   <tr>
-    <th class="col header asset">通貨</th>
-    <th class="col header aveBuyPrice">平均購入価格</th>
-    <th class="col header nowSymbolPrice">現在価格</th>
-    <th class="col header profitRatio">利益率</th>
+    <th class="header asset">通貨</th>
+    <th class="header aveBuyPrice">平均購入価格</th>
+    <th class="header nowSymbolPrice">現在価格</th>
+    <th class="header profitRatio">利益率</th>
   </tr>
 </table>
 <ion-content>
   <ion-grid>
     <ion-row *ngFor="let ppr of portfolioProfitRatios">
-      <ion-col class="col asset">{{ ppr.balance.asset }}</ion-col>
-      <ion-col class="col aveBuyPrice">{{ ppr.aveBuyPrice }}</ion-col>
-      <ion-col class="col nowSymbolPrice">{{ ppr.nowSymbolPrice }}</ion-col>
-      <ion-col class="col profitRatio">{{ ppr.profitRatio }}</ion-col>
+      <ion-col class="col asset" size="2">{{ ppr.balance.asset }}</ion-col>
+      <ion-col class="col aveBuyPrice" size="4">{{ ppr.aveBuyPrice }}</ion-col>
+      <ion-col class="col nowSymbolPrice" size="4">{{ ppr.nowSymbolPrice }}</ion-col>
+      <ion-col class="col profitRatio" size="2">{{ ppr.profitRatio }}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

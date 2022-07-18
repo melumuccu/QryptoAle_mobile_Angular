@@ -1,11 +1,44 @@
-table,
-tr,
-th,
-td {
-  border: 1px solid #000;
+// base color
+$black: #343434;
+// var
+$table_line_header: 1px solid $black;
+$table_line_col: 1px solid $black;
+
+ion-grid {
+  --ion-grid-padding: 0px;
+}
+.header {
+  border-right: $table_line_header;
+  border-top: $table_line_header;
+  border-bottom: $table_line_header;
   padding: 2px 5px;
 }
+.header:last-child {
+  border-right: unset;
+}
 
-.wrap {
-  margin: 10px;
+.col {
+  border-right: $table_line_col;
+  border-left: $table_line_col;
+  padding: 2px 5px;
+}
+.col:first-child {
+  border-left: unset;
+}
+.col:last-child {
+  border-right: unset;
+}
+
+ion-row:last-child {
+  border-bottom: $table_line_col;
+}
+
+.header.asset,
+.header.profitRatio {
+  width: calc(1/6 * 100%);
+}
+
+.header.aveBuyPrice,
+.header.nowSymbolPrice {
+  width: calc(2/6 * 100%);
 }
