@@ -50,6 +50,21 @@ ion-grid {
   border-right: unset;
 }
 
+.noContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  ion-icon {
+    font-size: 64px;
+  }
+  .text {
+    font-size: 18px;
+  }
+}
+
 // 横向き対応
 @media (orientation: landscape) {
   // ノッチ対応
