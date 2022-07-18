@@ -3,7 +3,6 @@
     <ion-title size="large">home</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-button (click)="this.fetchPortfolioProfitRatios()">更新</ion-button>
 <table>
   <tr>
     <th class="header asset">通貨</th>
@@ -13,6 +12,16 @@
   </tr>
 </table>
 <ion-content>
+  <!-- pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row *ngFor="let ppr of portfolioProfitRatios">
       <ion-col class="col asset" size="2">{{ ppr.balance.asset }}</ion-col>
