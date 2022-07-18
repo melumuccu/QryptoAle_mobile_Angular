@@ -1,11 +1,62 @@
-table,
-tr,
-th,
-td {
-  border: 1px solid #000;
-  padding: 2px 5px;
+// base color
+$black: #343434;
+$white: #ffffff;
+// var
+$table_line_header: 1px solid var(--ion-border-color);
+$table_line_col: 1px solid var(--ion-border-color);
+
+//================================
+ion-grid {
+  --ion-grid-padding: 0px;
 }
 
-.wrap {
-  margin: 10px;
+.tableHeader {
+  border-right: $table_line_header;
+  border-bottom: $table_line_header;
+  padding: 5px;
+  text-align: start;
+  background-color: var(--ion-color-secondary);
+  color: $white;
+}
+.tableHeader:last-child {
+  border-right: unset;
+}
+
+.tableHeader.asset,
+.tableHeader.profitRatio {
+  width: calc(1/6 * 100%);
+}
+.tableHeader.aveBuyPrice,
+.tableHeader.nowSymbolPrice {
+  width: calc(2/6 * 100%);
+}
+
+.dataList:last-child {
+  border-bottom: $table_line_col;
+}
+
+.data {
+  border-right: $table_line_col;
+  border-left: $table_line_col;
+  padding: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.data:first-child {
+  border-left: unset;
+}
+.data:last-child {
+  border-right: unset;
+}
+
+// 横向き対応
+@media (orientation: landscape) {
+  // ノッチ対応
+  .tableHeader:first-child,
+  .tableHeader:last-child,
+  .data:first-child,
+  .data:last-child {
+    text-align: center;
+  }
 }
