@@ -21,6 +21,9 @@ ion-grid {
   border-right: $table_line_col;
   border-left: $table_line_col;
   padding: 2px 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .col:first-child {
   border-left: unset;
