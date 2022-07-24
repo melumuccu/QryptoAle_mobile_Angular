@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { PortfolioProfitRatio } from 'src/app/shared/interface/binance';
+import { Portfolio, PortfolioProfitRatio } from 'src/app/shared/interface/binance';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class HomePage implements OnInit {
   portfolioProfitRatios: PortfolioProfitRatio[]; // GET[/portfolio/profit-ratio] の取得した値を格納する
+  portfolio: Portfolio[]; // GET[/portfolio/portfolio] の取得した値を格納する
   nowLoading = false;
 
   /** コンストラクタ */
@@ -26,9 +27,23 @@ export class HomePage implements OnInit {
     loading.present();
     this.nowLoading = true;
 
-    this.fetchPortfolioProfitRatios().subscribe(
+    // this.fetchPortfolioProfitRatios().subscribe(
+    //   async response => {
+    //     this.portfolioProfitRatios = response;
+    //     await loading.dismiss();
+    //     this.nowLoading = false;
+    //   },
+    //   async error => {
+    //     // TODO エラー表示する
+    //     console.error(error);
+    //     await loading.dismiss();
+    //     this.nowLoading = false;
+    //   }
+    // );
+
+    this.fetchPortfolio().subscribe(
       async response => {
-        this.portfolioProfitRatios = response;
+        this.portfolio = response;
         await loading.dismiss();
         this.nowLoading = false;
       },
@@ -92,16 +107,53 @@ export class HomePage implements OnInit {
   }
 
   /**
+   * ポートフォリオ情報を取得する
+   *
+   * @returns Observable<Portfolio>
+   */
+  fetchPortfolio(): Observable<Portfolio[]> {
+    const ob = new Observable<Portfolio[]>(observer => {
+      this.callGetPortfolio().subscribe(
+        response => {
+          observer.next(response);
+        },
+        error => {
+          observer.error(error);
+        }
+      );
+    });
+    return ob;
+  }
+
+  /**
    * 全通貨の現在保有額を取得
    *
-   * @param minQuantity 最小数量
-   * @param includeLocked 注文中の数量を含むか
    * @returns response
    */
-  callGetPortfolioProfitRatios(): Observable<PortfolioProfitRatio[]> {
+  private callGetPortfolioProfitRatios(): Observable<PortfolioProfitRatio[]> {
     const ob = new Observable<PortfolioProfitRatio[]>(observable => {
       this.api.get<PortfolioProfitRatio[]>(`/portfolio/profit-ratio`).subscribe(
         response => {
+          observable.next(response);
+        },
+        error => {
+          observable.error(error);
+        }
+      );
+    });
+    return ob;
+  }
+
+  /**
+   * ポートフォリオ情報を取得
+   *
+   * @returns response
+   */
+  private callGetPortfolio(): Observable<Portfolio[]> {
+    const ob = new Observable<Portfolio[]>(observable => {
+      this.api.get<Portfolio[]>(`/portfolio/portfolio`).subscribe(
+        response => {
+          console.log({ response });
           observable.next(response);
         },
         error => {
