@@ -11,24 +11,29 @@ ion-grid {
 }
 
 .tableHeader {
-  border-right: $table_line_header;
-  border-bottom: $table_line_header;
-  padding: 5px;
-  text-align: start;
-  background-color: var(--ion-color-secondary);
-  color: $white;
-}
-.tableHeader:last-child {
-  border-right: unset;
-}
-
-.tableHeader.asset,
-.tableHeader.profitRatio {
-  width: calc(1/6 * 100%);
-}
-.tableHeader.aveBuyPrice,
-.tableHeader.nowSymbolPrice {
-  width: calc(2/6 * 100%);
+  .row {
+    border-right: $table_line_header;
+    border-bottom: $table_line_header;
+    padding: 5px;
+    text-align: start;
+    background-color: var(--ion-color-secondary);
+    color: $white;
+  }
+  .row:last-child {
+    border-right: unset;
+  }
+  .asset,
+  .profitRatio {
+    width: calc(1/6 * 100%);
+  }
+  .aveBuyPrice,
+  .nowSymbolPrice {
+    width: calc(2/6 * 100%);
+  }
+  .convertToDpller,
+  .convertToJpy {
+    width: calc(2.5/6 * 100%);
+  }
 }
 
 .dataList:last-child {
@@ -68,8 +73,12 @@ ion-grid {
 // 横向き対応
 @media (orientation: landscape) {
   // ノッチ対応
-  .tableHeader:first-child,
-  .tableHeader:last-child,
+  .tableHeader {
+    .row:first-child,
+    .row:last-child {
+      text-align: center;
+    }
+  }
   .data:first-child,
   .data:last-child {
     text-align: center;
