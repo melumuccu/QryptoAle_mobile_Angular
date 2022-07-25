@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>QryptoAle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<table>
+  <!-- Portfolio -->
+  <tr class="tableHeader">
+    <th class="row asset">通貨</th>
+    <th class="row convertToDpller">ドル換算</th>
+    <th class="row convertToJpy">日本円換算</th>
+  </tr>
+</table>
+<ion-content>
+  <!-- pull to refresh -->
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher> -->
+  <!-- table data -->
+  <!-- Portfolio -->
+  <ion-grid>
+    <ion-row class="dataList" *ngFor="let p of portfolio">
+      <ion-col size="2" class="data asset">{{ p.balance.asset }}</ion-col>
+      <ion-col size="5" class="data convertToDpller">{{ p.convertedToBaseFiat }}</ion-col>
+      <ion-col size="5" class="data convertToJpy">{{ p.convertedToJpy }}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- no contents -->
+  <!-- <div class="noContents" *ngIf="!nowLoading && !hasContents()">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <span class="text">no contents.</span>
+  </div> -->
+</ion-content>
+
