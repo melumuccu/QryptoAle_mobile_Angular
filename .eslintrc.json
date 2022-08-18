@@ -35,7 +35,31 @@
             "prefix": "app",
             "style": "camelCase"
           }
-        ]
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "classProperty",
+            "format": ["UPPER_CASE", "camelCase"]
+          },
+          {
+            "selector": "variable",
+            "format": ["UPPER_CASE", "camelCase"]
+          }
+        ],
+        "require-jsdoc": [
+          "error",
+          {
+            "require": {
+              "FunctionDeclaration": true,
+              "MethodDefinition": true,
+              "ClassDeclaration": false,
+              "ArrowFunctionExpression": true,
+              "FunctionExpression": true
+            }
+          }
+        ],
+        "no-restricted-syntax": ["error", "TSEnumDeclaration"]
       }
     },
     {

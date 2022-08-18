@@ -1,0 +1,82 @@
+// base color
+$black: #343434;
+$white: #ffffff;
+// var
+$table_line_header: 1px solid var(--ion-border-color);
+$table_line_col: 1px solid var(--ion-border-color);
+
+//================================
+ion-grid {
+  --ion-grid-padding: 0px;
+}
+
+.tableHeader {
+  .row {
+    border-right: $table_line_header;
+    border-bottom: $table_line_header;
+    padding: 5px;
+    text-align: start;
+    background-color: var(--ion-color-secondary);
+    color: $white;
+  }
+  .row:last-child {
+    border-right: unset;
+  }
+  .asset,
+  .profitRatio {
+    width: calc(1/6 * 100%);
+  }
+  .aveBuyPrice,
+  .nowSymbolPrice {
+    width: calc(2/6 * 100%);
+  }
+}
+
+.dataList:last-child {
+  border-bottom: $table_line_col;
+}
+
+.data {
+  border-right: $table_line_col;
+  border-left: $table_line_col;
+  padding: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.data:first-child {
+  border-left: unset;
+}
+.data:last-child {
+  border-right: unset;
+}
+
+.noContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  ion-icon {
+    font-size: 64px;
+  }
+  .text {
+    font-size: 18px;
+  }
+}
+
+// 横向き対応
+@media (orientation: landscape) {
+  // ノッチ対応
+  .tableHeader {
+    .row:first-child,
+    .row:last-child {
+      text-align: center;
+    }
+  }
+  .data:first-child,
+  .data:last-child {
+    text-align: center;
+  }
+}

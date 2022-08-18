@@ -1,9 +1,9 @@
-Prefix: GMSG-350 要約
+Prefix: 要約
 
 詳細
 
 # ====例====
-# Feature: MG_CAR_REGISTRATION_APP-598 ○○の機能を実装
+# Feature: ○○の機能を実装
 #
 # ■■■という状況だったためxxxすることで☆☆☆の動作ができるようにした
 

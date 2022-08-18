@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>QryptoAle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<table>
+  <!-- Profit Ratio -->
+  <tr class="tableHeader">
+    <th class="row asset">通貨</th>
+    <th class="row aveBuyPrice">平均購入価格</th>
+    <th class="row nowSymbolPrice">現在価格</th>
+    <th class="row profitRatio">利益率</th>
+  </tr>
+</table>
+<ion-content>
+  <!-- pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- table data -->
+  <!-- Profit Ratio -->
+  <ion-grid>
+    <ion-row class="dataList" *ngFor="let ppr of portfolioProfitRatios">
+      <ion-col size="2" class="data asset">{{ ppr.balance.asset }}</ion-col>
+      <ion-col size="4" class="data aveBuyPrice">{{ ppr.aveBuyPrice }}</ion-col>
+      <ion-col size="4" class="data nowSymbolPrice">{{ ppr.nowSymbolPrice }}</ion-col>
+      <ion-col size="2" class="data profitRatio">{{ ppr.profitRatio }}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="noContents" *ngIf="!nowLoading && !hasContents()">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <span class="text">no contents.</span>
+  </div>
+</ion-content>
