@@ -58,18 +58,19 @@ export class PortfolioPage implements OnInit {
     );
   }
 
-  // /**
-  //  * コンテンツを１つ以上持つかどうか
-  //  *
-  //  * @returns true: 1つ以上のコンテンツを持つ
-  //  */
-  // hasContents(): boolean {
-  //   return (
-  //     this.portfolioProfitRatios !== null &&
-  //     this.portfolioProfitRatios !== undefined &&
-  //     this.portfolioProfitRatios.length > 0
-  //   );
-  // }
+  /**
+   * コンテンツを１つ以上持つかどうか
+   *
+   * @returns true: 1つ以上のコンテンツを持つ
+   */
+  hasContents(): boolean {
+    // prettier-ignore
+    return (
+      this.portfolio !== null &&
+      this.portfolio !== undefined &&
+      this.portfolio.length > 0
+    );
+  }
 
   /**
    * ポートフォリオ情報を取得する
