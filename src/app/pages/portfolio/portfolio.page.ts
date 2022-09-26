@@ -41,23 +41,22 @@ export class PortfolioPage implements OnInit {
     );
   }
 
-  // /**
-  //  * テーブルのリフレッシュ
-  //  *
-  //  * @param event
-  //  */
-  // refresh(event) {
-  //   this.fetchPortfolioProfitRatios().subscribe(
-  //     response => {
-  //       this.portfolioProfitRatios = response;
-  //       event.target.complete();
-  //     },
-  //     error => {
-  //       // TODO エラー表示する
-  //       console.error(error);
-  //     }
-  //   );
-  // }
+  /**
+   * テーブルのリフレッシュ
+   *
+   * @param event
+   */
+  refresh(event) {
+    this.fetchPortfolio().subscribe(
+      response => {
+        this.portfolio = response;
+        event.target.complete();
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 
   // /**
   //  * コンテンツを１つ以上持つかどうか
