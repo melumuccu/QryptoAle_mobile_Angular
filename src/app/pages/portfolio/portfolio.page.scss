@@ -24,29 +24,34 @@ ion-grid {
   }
   .asset,
   .profitRatio {
-    width: calc(1/6 * 100%);
+    width: calc(1 / 6 * 100%);
   }
   .aveBuyPrice,
   .nowSymbolPrice {
-    width: calc(2/6 * 100%);
+    width: calc(2 / 6 * 100%);
   }
   .convertToDpller,
   .convertToJpy {
-    width: calc(2.5/6 * 100%);
+    width: calc(2.5 / 6 * 100%);
   }
 }
 
 .dataList:last-child {
   border-bottom: $table_line_col;
 }
-
-.data {
-  border-right: $table_line_col;
-  border-left: $table_line_col;
-  padding: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.dataList {
+  .data {
+    border-right: $table_line_col;
+    border-left: $table_line_col;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .convertToDpller,
+  .convertToJpy {
+    text-align: right;
+  }
 }
 .data:first-child {
   border-left: unset;

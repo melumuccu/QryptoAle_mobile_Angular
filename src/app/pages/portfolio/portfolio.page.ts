@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { Portfolio } from 'src/app/shared/interface/binance';
+import { Portfolio, PortfolioEdited } from 'src/app/shared/interface/binance';
 import { ApiService } from '../../shared/services/api.service';
+import { CalculateService } from '../../shared/services/calculate.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -10,11 +11,15 @@ import { ApiService } from '../../shared/services/api.service';
   styleUrls: ['./portfolio.page.scss'],
 })
 export class PortfolioPage implements OnInit {
-  portfolio: Portfolio[]; // GET[/portfolio/portfolio] の取得した値を格納する
+  portfolio: PortfolioEdited[]; // GET[/portfolio/portfolio] の取得した値を格納する
   nowLoading = false;
 
   /** コンストラクタ */
-  constructor(private api: ApiService, private loadingCtrl: LoadingController) {}
+  constructor(
+    private api: ApiService,
+    private loadingCtrl: LoadingController,
+    private calc: CalculateService
+  ) {}
 
   /** 初期化 */
   async ngOnInit() {
@@ -28,7 +33,7 @@ export class PortfolioPage implements OnInit {
 
     this.fetchPortfolio().subscribe(
       async response => {
-        this.portfolio = response;
+        this.portfolio = this.editPortfolio(response);
         await loading.dismiss();
         this.nowLoading = false;
       },
@@ -49,7 +54,7 @@ export class PortfolioPage implements OnInit {
   refresh(event) {
     this.fetchPortfolio().subscribe(
       response => {
-        this.portfolio = response;
+        this.portfolio = this.editPortfolio(response);
         event.target.complete();
       },
       error => {
@@ -109,5 +114,28 @@ export class PortfolioPage implements OnInit {
       );
     });
     return ob;
+  }
+
+  /**
+   * Portfolioを以下の通り加工する
+   *
+   * ・convertedToBaseFiat, convertedToJpy
+   *    ・金額の多い通貨順にソートする
+   *    ・整数になるよう少数第一位を四捨五入し、カンマ区切りにする
+   *
+   * @param portfolios
+   */
+  private editPortfolio(portfolios: Portfolio[]) {
+    const sorted = portfolios.sort((x, y) => y.convertedToJpy - x.convertedToJpy);
+    const rounded = sorted.map(p => {
+      const x = {
+        balance: p.balance,
+        convertedToBaseFiat: this.calc.round(p.convertedToBaseFiat, 0).toLocaleString(),
+        convertedToJpy: this.calc.round(p.convertedToJpy, 0).toLocaleString(),
+      };
+      return x;
+    });
+
+    return rounded;
   }
 }

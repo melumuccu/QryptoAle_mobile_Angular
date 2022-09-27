@@ -11,6 +11,12 @@ export interface PortfolioProfitRatio {
   profitRatio: number;
 }
 
+export interface PortfolioEdited {
+  balance: AssetBalance;
+  convertedToBaseFiat: string;
+  convertedToJpy: string;
+}
+
 export interface Portfolio {
   balance: AssetBalance;
   convertedToBaseFiat: number;
