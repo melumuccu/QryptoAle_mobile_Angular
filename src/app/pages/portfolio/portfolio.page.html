@@ -8,7 +8,7 @@
   <!-- Portfolio -->
   <tr class="tableHeader">
     <th class="row asset">通貨</th>
-    <th class="row convertToDpller">ドル換算</th>
+    <th class="row convertToDoller">ドル換算</th>
     <th class="row convertToJpy">日本円換算</th>
   </tr>
 </table>
@@ -28,7 +28,7 @@
   <ion-grid>
     <ion-row class="dataList" *ngFor="let p of portfolio">
       <ion-col size="2" class="data asset">{{ p.balance.asset }}</ion-col>
-      <ion-col size="5" class="data convertToDpller">{{ p.convertedToBaseFiat }} $</ion-col>
+      <ion-col size="5" class="data convertToDoller">{{ p.convertedToBaseFiat }} $</ion-col>
       <ion-col size="5" class="data convertToJpy">{{ p.convertedToJpy }} ¥</ion-col>
     </ion-row>
   </ion-grid>
